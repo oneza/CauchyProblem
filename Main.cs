@@ -12,8 +12,8 @@ namespace CouchyProblem
         {
             List<double> c = new List<double>() { 1, 1, 0, 1.1, 1, 1 };
             List<double> c1 = new List<double>() { 1, 1, 0, 1, 1, 1 };
-            PhasePoint p1 = new PhasePoint( c);
-            PhasePoint p2 = new PhasePoint( c1);
+            PhasePoint p1 = new PhasePoint(c);
+            PhasePoint p2 = new PhasePoint(c1);
             Console.WriteLine(p1.CompareTo(p2));
             Console.ReadKey();
         }

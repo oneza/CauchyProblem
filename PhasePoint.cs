@@ -39,7 +39,7 @@ namespace CouchyProblem
 
     public struct PhasePoint : IEnumerable<double>, IComparable<PhasePoint>
     {
-        private List<double> coords;
+        public List<double> coords;
         public double this [int i] 
         {
             get { return coords[i]; }
@@ -126,10 +126,7 @@ namespace CouchyProblem
             return s;
         }
 
-        public static bool HasNeighbour(PhasePoint p1, int dir)
-        {
-            
-        }
+
 
         public int CompareTo(PhasePoint that)
         {
