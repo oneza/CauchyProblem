@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CouchyProblem
 {
@@ -12,12 +14,10 @@ namespace CouchyProblem
     {
         public PhasePoint Steps { get; protected set; }
 
-//        static SortedDictionary<PhasePoint, Dictionary<double, double>> grid = 
-//            new SortedDictionary<PhasePoint, Dictionary<double, double>>();
         readonly GridStorage grid = new GridStorage();
-        
+
         // Фабрики
-        
+
         // Сетка, накинутая на прямоугольный параллелепипед
         public static Grid BoxGrid(PhasePoint ld, PhasePoint sizes, PhasePoint steps)
         {
@@ -29,9 +29,14 @@ namespace CouchyProblem
         {
             return null;
         }
-        
+
+        public static Grid SegmentGrid(PhasePoint beginning, PhasePoint end, PhasePoint steps)
+        {
+            return null;
+        }
+
         // Может быть, еще что-то...
-        
+
         public bool HasNeighbour(PhasePoint p1, int dir)
         {
             int absDir = Math.Abs(dir);
@@ -39,6 +44,5 @@ namespace CouchyProblem
             p3.coords[absDir] += Steps[absDir] * Math.Sign(dir);
             return grid.ContainsKey(p3);
         }
-
     }
 }
