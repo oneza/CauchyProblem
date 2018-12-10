@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace CouchyProblem
 {
-    public class GridStorage : SortedDictionary<PhasePoint, Dictionary<double, double>>
-    {
-    }
+//    public class GridStorage : SortedDictionary<PhasePoint, Dictionary<double, double>>
+//    {
+//    }
 
-    public class Grid
+    public class Grid : SortedDictionary<PhasePoint, Dictionary<double, double>>
     {
         public PhasePoint Steps { get; protected set; }
 
-        readonly GridStorage grid = new GridStorage();
+        //readonly GridStorage grid = new GridStorage();
 
         // Фабрики
 

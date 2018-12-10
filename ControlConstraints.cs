@@ -4,25 +4,33 @@ using System.Text;
 
 namespace CouchyProblem
 {
-    class ControlConstraintsStorage : SortedDictionary<PhasePoint, Dictionary<double, double>>
-    {
-    }
+//    class ControlConstraintsStorage : SortedDictionary<PhasePoint, Dictionary<double, double>>
+//    {
+//    }
 
     public class ControlConstraints
     {
-        readonly GridStorage constr = new GridStorage();
+        public readonly Grid constr;
 
-        public static Grid BoxConstraints(PhasePoint ld, PhasePoint sizes, PhasePoint steps)
+        public PhasePoint FindMin(); // Передали функцию
+        public PhasePoint FindMax(); // Передали функцию
+
+
+        private ControlConstraints()
+        {
+            constr = null; 
+        }
+        public static ControlConstraints BoxConstraints(PhasePoint ld, PhasePoint sizes, PhasePoint steps)
         {
             return null;
         }
 
-        public static Grid BallConstraints(PhasePoint center, double radius, PhasePoint steps)
+        public static ControlConstraints BallConstraints(PhasePoint center, double radius, PhasePoint steps)
         {
             return null;
         }
 
-        public static Grid SegmentConstraints(PhasePoint beginning, PhasePoint end, PhasePoint steps)
+        public static ControlConstraints SegmentConstraints(PhasePoint beginning, PhasePoint end, PhasePoint steps)
         {
             return null;
         }
