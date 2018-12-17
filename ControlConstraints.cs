@@ -4,31 +4,21 @@ using System.Linq;
 
 namespace CouchyProblem
 {
-    //    class ControlConstraintsStorage : SortedDictionary<PhasePoint, Dictionary<double, double>>
-    //    {
-    //    }
-
     public class ControlConstraints
     {
         public readonly Grid constr;
 
-        public PhasePoint FindMin()  // Передали функцию
+        public PhasePoint FindMin(Func<PhasePoint,Double> f)  // Передали функцию
         {
-            Grid grid = new Grid;
-            var num = grid.Keys
-               .Select(_ => Function.function(_))
-               .ToList()
+            Tuple<Double,PhasePoint> res = constr.Keys
+               .Select(point => Tuple.Create(f(point),point))
                .Min();
-            List<PhasePoint> keys = grid.Keys
-                .ToList();
-            int i = keys.FindIndex(c => Function.function(c) == num);
-            PhasePoint p = grid.Keys.ElementAt(i);
-            return p;
+            return res.Item2;
         }
 
         public PhasePoint FindMax() // Передали функцию
         {
-            Grid grid = new Grid;
+            Grid grid = new Grid();
             var num = grid.Keys
                .Select(_ => Function.function(_))
                .ToList()
@@ -57,18 +47,9 @@ namespace CouchyProblem
 
         public static ControlConstraints SegmentConstraints(PhasePoint beginning, PhasePoint end, PhasePoint steps)
         {
-            ControlConstraints constr = new Grid;
-            return constr;
+            ControlConstraints res = new ControlConstraints();
+            return res;
         }
     }
 
-    public class Function
-    {
-        public static Func<PhasePoint, double> function = DefineFunction;
-
-        public static double DefineFunction(PhasePoint p)
-        {
-            return 1.0;
-        }
-    }
 }

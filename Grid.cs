@@ -18,6 +18,7 @@ namespace CouchyProblem
         public static Grid BoxGrid(PhasePoint ld, PhasePoint sizes, PhasePoint steps)
         {
             Grid grid = new Grid();
+            // !!!!!! Писать тут !!!!!!
             return null;
         }
 
@@ -25,18 +26,18 @@ namespace CouchyProblem
         public static Grid BallGrid(PhasePoint center, double radius, PhasePoint steps)
         {
             Grid grid = new Grid();
-            for (int i = 0; i <)
-            {
-
-            }
-            return null;
+//            for (int i = 0; i <)
+//            {
+//
+//            }
+            return grid;
         }
 
         public static Grid SegmentGrid(PhasePoint beginning, PhasePoint end, PhasePoint steps)
         {
             Grid grid = new Grid();
             PhasePoint currentpoint = beginning;
-            while (currentpoint.CompareTo(end) == -1)
+            while (currentpoint.CompareTo(end) != 0)
             {
                 grid.Add(currentpoint, null);
                 currentpoint += steps;
