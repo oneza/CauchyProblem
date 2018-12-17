@@ -6,10 +6,6 @@ using System.Threading.Tasks;
 
 namespace CouchyProblem
 {
-//    public class GridStorage : SortedDictionary<PhasePoint, Dictionary<double, double>>
-//    {
-//    }
-
     public class Grid : SortedDictionary<PhasePoint, Dictionary<double, double>>
     {
         public PhasePoint Steps { get; protected set; }
@@ -21,18 +17,31 @@ namespace CouchyProblem
         // Сетка, накинутая на прямоугольный параллелепипед
         public static Grid BoxGrid(PhasePoint ld, PhasePoint sizes, PhasePoint steps)
         {
+            Grid grid = new Grid();
             return null;
         }
 
         // Сетка, накинутая на шар
         public static Grid BallGrid(PhasePoint center, double radius, PhasePoint steps)
         {
+            Grid grid = new Grid();
+            for (int i = 0; i <)
+            {
+
+            }
             return null;
         }
 
         public static Grid SegmentGrid(PhasePoint beginning, PhasePoint end, PhasePoint steps)
         {
-            return null;
+            Grid grid = new Grid();
+            PhasePoint currentpoint = beginning;
+            while (currentpoint.CompareTo(end) == -1)
+            {
+                grid.Add(currentpoint, null);
+                currentpoint += steps;
+            }
+            return grid;
         }
 
         // Может быть, еще что-то...
