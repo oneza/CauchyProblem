@@ -16,18 +16,12 @@ namespace CouchyProblem
             return res.Item2;
         }
 
-        public PhasePoint FindMax() // Передали функцию
+        public PhasePoint FindMax(Func<PhasePoint, Double> f) // Передали функцию
         {
-            Grid grid = new Grid();
-            var num = grid.Keys
-               .Select(_ => Function.function(_))
-               .ToList()
+            Tuple<Double, PhasePoint> res = constr.Keys
+               .Select(point => Tuple.Create(f(point), point))
                .Max();
-            List<PhasePoint> keys = grid.Keys
-                .ToList();
-            int i = keys.FindIndex(c => Function.function(c) == num);
-            PhasePoint p = grid.Keys.ElementAt(i);
-            return p;
+            return res.Item2;
         }
 
         private ControlConstraints()

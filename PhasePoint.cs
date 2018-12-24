@@ -11,27 +11,27 @@ namespace CouchyProblem
     {
         public static double Eps = 1e-1;
 
-        public static bool EQ (double a, double b)
+        public static bool EQ(double a, double b)
         {
             return Math.Abs(a - b) < Eps;
         }
-        public static bool NE (double a, double b)
+        public static bool NE(double a, double b)
         {
             return Math.Abs(a - b) > Eps;
         }
-        public static bool LT (double a, double b)
+        public static bool LT(double a, double b)
         {
             return a < b - Eps;
         }
-        public static bool LE (double a, double b)
+        public static bool LE(double a, double b)
         {
             return a < b + Eps;
         }
-        public static bool GT (double a, double b)
+        public static bool GT(double a, double b)
         {
             return a > b + Eps;
         }
-        public static bool GE (double a, double b)
+        public static bool GE(double a, double b)
         {
             return a > b - Eps;
         }
@@ -40,9 +40,9 @@ namespace CouchyProblem
     public struct PhasePoint : IEnumerable<double>, IComparable<PhasePoint>
     {
         public List<double> coords;
-        public double this [int i] 
+        public double this[int i]
         {
-            get { return coords[i]; }
+            get { return coords[i];}
         }
 
         public int Dim
@@ -50,7 +50,7 @@ namespace CouchyProblem
             get { return coords.Count; }
         }
 
-        public PhasePoint (int newDim)
+        public PhasePoint(int newDim)
         {
             coords = new List<double>(newDim);
             for (int i = 0; i < newDim; i++)
@@ -89,7 +89,7 @@ namespace CouchyProblem
             return p3;
         }
 
-        public static PhasePoint operator * (double alpha, PhasePoint p1)
+        public static PhasePoint operator *(double alpha, PhasePoint p1)
         {
             return p1 * alpha;
         }
@@ -100,7 +100,7 @@ namespace CouchyProblem
             p3.coords = new List<double>(p1.Dim);
             for (int i = 0; i < p1.coords.Count; i++)
             {
-                p3.coords.Add(alpha*p1.coords[i]);
+                p3.coords.Add(alpha * p1.coords[i]);
             }
             return p3;
         }
@@ -111,7 +111,7 @@ namespace CouchyProblem
             p3.coords = new List<double>(p1.Dim);
             for (int i = 0; i < p1.coords.Count; i++)
             {
-                p3.coords.Add(p1.coords[i]/alpha);
+                p3.coords.Add(p1.coords[i] / alpha);
             }
             return p3;
         }
@@ -125,8 +125,6 @@ namespace CouchyProblem
             }
             return s;
         }
-
-
 
         public int CompareTo(PhasePoint that)
         {

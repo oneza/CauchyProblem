@@ -19,17 +19,50 @@ namespace CouchyProblem
         {
             Grid grid = new Grid();
             // !!!!!! Писать тут !!!!!!
-            return null;
+            double[] lim = sizes.ToArray<double>();
+            int len = lim.Length;
+
+            int[] cnt = new int[len];
+            for (int i = 0; i < len; i++)
+            {
+                cnt[i] = 0;
+            }
+
+            List<double> c = new List<double>();
+            for (int i = 0; i < len; i++)
+            {
+                c.Add(0);
+            }
+
+            int curind = 0;
+            while (cnt[curind] < lim[curind]- 1)
+            {
+                PhasePoint curpoint = new PhasePoint(c);
+                for (int i = 0; i < len; i++)
+                    if (i != cnt[curind])
+                    {
+                        curpoint.coords.Add(ld[i]);
+                    }
+                    else
+                    {
+                        curpoint.coords.Add(ld[i] + steps[i]);
+                    }
+                grid.Add(curpoint, null);
+                while (curind < len)
+                {
+                    cnt[curind] = 0;
+                    curind++;
+                    if (curind < len) cnt[curind]++;
+                }
+            }
+            return grid;
         }
 
         // Сетка, накинутая на шар
         public static Grid BallGrid(PhasePoint center, double radius, PhasePoint steps)
         {
             Grid grid = new Grid();
-//            for (int i = 0; i <)
-//            {
-//
-//            }
+
             return grid;
         }
 
@@ -49,6 +82,7 @@ namespace CouchyProblem
 
         public bool HasNeighbour(PhasePoint p1, int dir)
         {
+            Grid grid = new Grid();
             int absDir = Math.Abs(dir);
             PhasePoint p3 = new PhasePoint(p1);
             p3.coords[absDir] += Steps[absDir] * Math.Sign(dir);
