@@ -67,6 +67,13 @@ namespace CouchyProblem
             coords = prevPoint.coords;
         }
 
+        public PhasePoint(PhasePoint basePoint, PhasePoint step, int[] indices)
+        {
+            coords = new List<double>(basePoint.coords);
+            for (int i = 0; i < coords.Count; i++)
+                coords[i] += indices[i] * step[i];
+        }
+
         public static PhasePoint operator +(PhasePoint p1, PhasePoint p2)
         {
             PhasePoint p3 = new PhasePoint();
@@ -145,6 +152,18 @@ namespace CouchyProblem
         IEnumerator IEnumerable.GetEnumerator()
         {
             return coords.GetEnumerator();
+        }
+
+        public override string ToString()
+        {
+            string res = "(";
+            for (int i = 0; i < Dim; i++)
+            {
+                if (i > 0) res += ",";
+                res += coords[i];
+            }
+            res += ")";
+            return res;
         }
     }
 }

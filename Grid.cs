@@ -18,43 +18,30 @@ namespace CouchyProblem
         public static Grid BoxGrid(PhasePoint ld, PhasePoint sizes, PhasePoint steps)
         {
             Grid grid = new Grid();
-            // !!!!!! Писать тут !!!!!!
-            double[] lim = sizes.ToArray<double>();
-            int len = lim.Length;
-
-            int[] cnt = new int[len];
-            for (int i = 0; i < len; i++)
+            int[] 
+                upperBounds = new int[ld.Dim],
+                cnt = new int[ld.Dim];
+            for (int i = 0; i < ld.Dim; i++)
             {
+                upperBounds[i] = (int) (sizes[i] / steps[i]);
                 cnt[i] = 0;
             }
 
-            List<double> c = new List<double>();
-            for (int i = 0; i < len; i++)
+            int curind;
+            do
             {
-                c.Add(0);
-            }
-
-            int curind = 0;
-            while (cnt[curind] < lim[curind]- 1)
-            {
-                PhasePoint curpoint = new PhasePoint(c);
-                for (int i = 0; i < len; i++)
-                    if (i != cnt[curind])
-                    {
-                        curpoint.coords.Add(ld[i]);
-                    }
-                    else
-                    {
-                        curpoint.coords.Add(ld[i] + steps[i]);
-                    }
+                PhasePoint curpoint = new PhasePoint(ld, steps, cnt);
                 grid.Add(curpoint, null);
-                while (curind < len)
+
+                curind = 0;
+                cnt[curind]++;
+                while (curind < ld.Dim && cnt[curind] > upperBounds[curind])
                 {
                     cnt[curind] = 0;
                     curind++;
-                    if (curind < len) cnt[curind]++;
+                    if (curind < ld.Dim) cnt[curind]++;
                 }
-            }
+            } while (curind < ld.Dim);
             return grid;
         }
 
@@ -62,6 +49,22 @@ namespace CouchyProblem
         public static Grid BallGrid(PhasePoint center, double radius, PhasePoint steps)
         {
             Grid grid = new Grid();
+            int[] 
+                lowerBounds = new int[center.Dim],
+                upperBounds = new int[center.Dim],
+                cnt = new int[center.Dim];
+            
+            lowerBounds[0] = -(int) (radius / steps[0]);
+            upperBounds[0] = -lowerBounds[0];
+            cnt[0] = lowerBounds[0];
+            
+            int curind = 0;
+
+            while (curind >= 0)
+            {
+            }
+
+
 
             return grid;
         }
