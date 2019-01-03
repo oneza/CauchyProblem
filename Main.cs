@@ -10,11 +10,16 @@ namespace CouchyProblem
     {
         static void Main(string[] args)
         {
+            //PhasePoint
+            //    sizes = new PhasePoint(new List<double> { 3, 3, 3 }),
+            //    steps = new PhasePoint(new List<double> { 1, 1, 1 }),
+            //    ld = new PhasePoint(new List<double> { 1, 1, 1 });
+            //Grid grid = Grid.BoxGrid(ld, sizes, steps);
             PhasePoint
-                sizes = new PhasePoint(new List<double> {3, 3, 3}),
-                steps = new PhasePoint(new List<double> {1, 1, 1}),
-                ld = new PhasePoint(new List<double> {1, 1, 1});
-            Grid grid = Grid.BoxGrid(ld, sizes, steps);
+                center = new PhasePoint(new List<double> { 0, 0, 0 }),
+                steps = new PhasePoint(new List<double> { 3, 3, 3 });
+            double radius = 4;
+            Grid grid = Grid.BallGrid(center, radius, steps);
             Console.WriteLine(grid);
             Console.ReadKey();
         }

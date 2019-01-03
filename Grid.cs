@@ -18,12 +18,12 @@ namespace CouchyProblem
         public static Grid BoxGrid(PhasePoint ld, PhasePoint sizes, PhasePoint steps)
         {
             Grid grid = new Grid();
-            int[] 
+            int[]
                 upperBounds = new int[ld.Dim],
                 cnt = new int[ld.Dim];
             for (int i = 0; i < ld.Dim; i++)
             {
-                upperBounds[i] = (int) (sizes[i] / steps[i]);
+                upperBounds[i] = (int)(sizes[i] / steps[i]);
                 cnt[i] = 0;
             }
 
@@ -49,22 +49,38 @@ namespace CouchyProblem
         public static Grid BallGrid(PhasePoint center, double radius, PhasePoint steps)
         {
             Grid grid = new Grid();
-            int[] 
+            int[]
                 lowerBounds = new int[center.Dim],
                 upperBounds = new int[center.Dim],
-                cnt = new int[center.Dim];
-            
-            lowerBounds[0] = -(int) (radius / steps[0]);
+                cnt = new int[center.Dim-1];
+
+            lowerBounds[0] = -(int)(radius / steps[0]);
             upperBounds[0] = -lowerBounds[0];
-            cnt[0] = lowerBounds[0];
-            
+            cnt[0] = lowerBounds[0] - 1;
+
             int curind = 0;
 
             while (curind >= 0)
             {
+                PhasePoint curpoint = new PhasePoint(center, steps, cnt);
+                if (curind == center.Dim)
+                {
+                    grid.Add(curpoint, null);
+                    curind--;
+                }
+                cnt[curind]++;
+                if (cnt[curind] > upperBounds[curind]) curind--;
+                else
+                {
+                    if(curind < center.Dim)
+                    {
+                        curind++;
+                        lowerBounds[curind] = (int)Math.Ceiling((-Math.Sqrt(radius * radius) - cnt.Take(curind - 1).Sum()) /steps[curind]);
+                        upperBounds[curind] =-lowerBounds[curind];
+                        cnt[curind] =lowerBounds[curind] - 1;
+                    }
+                }
             }
-
-
 
             return grid;
         }
