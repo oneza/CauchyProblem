@@ -52,11 +52,11 @@ namespace CouchyProblem
             int[]
                 lowerBounds = new int[center.Dim],
                 upperBounds = new int[center.Dim],
-                cnt = new int[center.Dim-1];
+                cnt = new int[center.Dim];
 
             lowerBounds[0] = -(int)(radius / steps[0]);
             upperBounds[0] = -lowerBounds[0];
-            cnt[0] = lowerBounds[0] - 1;
+            cnt[0] = lowerBounds[0]-1;
 
             int curind = 0;
 
@@ -75,7 +75,7 @@ namespace CouchyProblem
                     if(curind < center.Dim)
                     {
                         curind++;
-                        lowerBounds[curind] = (int)Math.Ceiling((-Math.Sqrt(radius * radius) - cnt.Take(curind - 1).Sum()) /steps[curind]);
+                        lowerBounds[curind] = (int)Math.Ceiling(-Math.Sqrt(radius * radius - cnt.Take(curind - 1).Select(x => x*x).Sum()) /steps[curind]);
                         upperBounds[curind] =-lowerBounds[curind];
                         cnt[curind] =lowerBounds[curind] - 1;
                     }
