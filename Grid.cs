@@ -62,22 +62,24 @@ namespace CouchyProblem
 
             while (curind >= 0)
             {
-                PhasePoint curpoint = new PhasePoint(center, steps, cnt);
-                if (curind == center.Dim)
-                {
-                    grid.Add(curpoint, null);
-                    curind--;
-                }
                 cnt[curind]++;
                 if (cnt[curind] > upperBounds[curind]) curind--;
                 else
                 {
+                    curind++;
                     if(curind < center.Dim)
                     {
-                        curind++;
-                        lowerBounds[curind] = (int)Math.Ceiling(-Math.Sqrt(radius * radius - cnt.Take(curind - 1).Select(x => x*x).Sum()) /steps[curind]);
-                        upperBounds[curind] =-lowerBounds[curind];
-                        cnt[curind] =lowerBounds[curind] - 1;
+                        lowerBounds[curind] = 
+                            (int)Math.Ceiling(-Math.Sqrt(radius * radius - 
+                                cnt.Take(curind).Select(x => x*x).Sum()) /steps[curind]);
+                        upperBounds[curind] = -lowerBounds[curind];
+                        cnt[curind] = lowerBounds[curind] - 1;
+                    }
+                    else
+                    {
+                        PhasePoint curpoint = new PhasePoint(center, steps, cnt);
+                        grid.Add(curpoint, null);
+                        curind--;
                     }
                 }
             }

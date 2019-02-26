@@ -18,7 +18,7 @@ namespace CouchyProblem
             PhasePoint
                 center = new PhasePoint(new List<double> { 0, 0, 0 }),
                 steps = new PhasePoint(new List<double> { 1, 1, 1 });
-            double radius = 4;
+            double radius = 2;
             Grid grid = Grid.BallGrid(center, radius, steps);
             Console.WriteLine(grid);
             Console.ReadKey();
