@@ -10,8 +10,9 @@ namespace CouchyProblem
     {
         public PhasePoint Steps { get; protected set; }
 
-        //readonly GridStorage grid = new GridStorage();
-
+        LibLinking<Type> loader = new LibLinking<Type>();
+        var toolsList = loader.FindLib(".");
+        
         // Фабрики
 
         // Сетка, накинутая на прямоугольный параллелепипед
