@@ -8,9 +8,9 @@ namespace CouchyProblem
 {
     public class ControlConstraints
     {
-        public readonly Grid constr;
+        //public readonly Grid constr;
 
-        public PhasePoint FindMin(Func<PhasePoint,Double> f)  // Передали функцию
+        public PhasePoint FindMin(Func<PhasePoint,Double> f, ControlConstraints constr)  // Передали функцию
         {
             Tuple<Double,PhasePoint> res = constr.Keys
                .Select(point => Tuple.Create(f(point),point))
@@ -18,7 +18,7 @@ namespace CouchyProblem
             return res.Item2;
         }
 
-        public PhasePoint FindMax(Func<PhasePoint, Double> f) // Передали функцию
+        public PhasePoint FindMax(Func<PhasePoint, Double> f, ControlConstraints constr ) // Передали функцию
         {
             Tuple<Double, PhasePoint> res = constr.Keys
                .Select(point => Tuple.Create(f(point), point))
