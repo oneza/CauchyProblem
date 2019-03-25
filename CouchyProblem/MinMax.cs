@@ -1,14 +1,14 @@
+using System.Collections.Generic;
+using System.Linq;
 using Contracts;
 
 namespace CouchyProblem
 {
     public class MinMax
     {
-        //Подумать, как связать с i
-        public double Lsderivative(PhasePoint point, double p, double a)
+        public double Lsderivative(PhasePoint point, double p, int i, Grid grid)
         {
-            int i;
-            double deltax = p * a;
+            double deltax = p * ; // Ai - ?
             PhasePoint point1 = point;
             point1[i] = point1[i] - deltax;
 
@@ -28,9 +28,12 @@ namespace CouchyProblem
 
         public double Minmax(ControlConstraints u, ControlConstraints v, Grid grid)
         {
-            double res;
+            List<double> res;
 
-            
+            for (int i = 0; i < grid.Keys.Count; i++)
+            {
+                res.Add();                        
+            }
         }
     }
 }
