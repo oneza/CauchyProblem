@@ -6,34 +6,58 @@ namespace CouchyProblem
 {
     public class MinMax
     {
-        public double Lsderivative(PhasePoint point, double p, int i, Grid grid)
+        public double Minmax(ControlConstraints u, ControlConstraints v, Grid grid, double p)
         {
-            double deltax = p * ; // Ai - ?
-            PhasePoint point1 = point;
-            point1[i] = point1[i] - deltax;
-
-            return (v(point) - v(point1)) / deltax;
-
-        }
-
-        public double Rsderivative(PhasePoint point, double p, double a)
-        {
-            int i;
-            double deltax = p * a;
-            PhasePoint point1 = point;
-            point1[i] = point1[i] + deltax;
-
-            return (v(point1) - v(point)) / deltax;
-        }
-
-        public double Minmax(ControlConstraints u, ControlConstraints v, Grid grid)
-        {
-            List<double> res;
-
-            for (int i = 0; i < grid.Keys.Count; i++)
+            List<double> row = new List<double>();
+            List<List<double>> column = new List<List<double>>();
+            double sum = 0;
+            foreach (var b in v.Keys)
             {
-                res.Add();                        
+                foreach (var a in u.Keys)
+                {
+                    for (int i = 0; i < v.Keys.Count; i++)
+                    {
+                        if (f(T - t, grid.ElementAt(i).Key, u, v) > 0)
+                        {
+                            if (Grid.HasNeighbour(grid.ElementAt(i).Key, i, grid))
+                            {
+                                PhasePoint point = new PhasePoint(grid.ElementAt(i).Key);
+                                PhasePoint point1 = new PhasePoint(point);
+                                point1[i] += ai * p;
+                                sum += ((v(point1) - v(point) / ai * p)) * f(T - t, point, u, v);
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        else if (f(T - t, grid.ElementAt(i).Key, u, v) < 0)
+                        {
+                            if (Grid.HasNeighbour(grid.ElementAt(i).Key, i, grid))
+                            {
+                                PhasePoint point = new PhasePoint(grid.ElementAt(i).Key);
+                                PhasePoint point1 = new PhasePoint(point);
+                                point1[i] -= ai * p;
+                                sum += ((v(point) - v(point1) / ai * p)) * f(T - t, point, u, v);
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    
+                    row.Add(sum);
+                    sum = 0;
+                }
+                column.Add(row);
             }
+
+            double res = column
+                .Select(r => r.Min())
+                .Max();
+
+            return res;
         }
     }
 }

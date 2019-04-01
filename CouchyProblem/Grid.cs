@@ -101,9 +101,8 @@ namespace CouchyProblem
 
         // Может быть, еще что-то...
 
-        public bool HasNeighbour(PhasePoint p1, int dir)
+        public bool HasNeighbour(PhasePoint p1, int dir, Grid grid)
         {
-            Grid grid = new Grid();
             int absDir = Math.Abs(dir);
             PhasePoint p3 = new PhasePoint(p1);
             p3.coords[absDir] += Steps[absDir] * Math.Sign(dir);
