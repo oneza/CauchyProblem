@@ -5,5 +5,6 @@ namespace Contracts
   public interface IDynamics
   {
     PhasePoint f(double t, PhasePoint x, PhasePoint u, PhasePoint v);
+    double fi(int i, double t, PhasePoint x, PhasePoint u, PhasePoint v);
   }
 }

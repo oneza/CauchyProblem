@@ -4,60 +4,57 @@ using Contracts;
 
 namespace CouchyProblem
 {
-    public class MinMax
+  public class MinMax
+  {
+    public double Minmax(IDynamics dynam, double t, PhasePoint x, ControlConstraints u, 
+      ControlConstraints v, Grid grid)
     {
-        public double Minmax(ControlConstraints u, ControlConstraints v, Grid grid, double p)
+      double maxmin = -1e38;
+      PhasePoint neigh;
+      foreach (var b in v.Keys)
+      {
+        double min = 1e38;
+        foreach (var a in u.Keys)
         {
-            List<double> row = new List<double>();
-            List<List<double>> column = new List<List<double>>();
-            double sum = 0;
-            foreach (var b in v.Keys)
+          PhasePoint speed = dynam.f(t, x, a, b);
+          double sum = 0;
+          for (int i = 0; i < x.Dim; i++)
+          {
+            if (speed[i] > 0)
             {
-                foreach (var a in u.Keys)
-                {
-                    for (int i = 0; i < v.Keys.Count; i++)
-                    {
-                        if (f(T - t, grid.ElementAt(i).Key, u, v) > 0)
-                        {
-                            if (Grid.HasNeighbour(grid.ElementAt(i).Key, i, grid))
-                            {
-                                PhasePoint point = new PhasePoint(grid.ElementAt(i).Key);
-                                PhasePoint point1 = new PhasePoint(point);
-                                point1[i] += ai * p;
-                                sum += ((v(point1) - v(point) / ai * p)) * f(T - t, point, u, v);
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-                        else if (f(T - t, grid.ElementAt(i).Key, u, v) < 0)
-                        {
-                            if (Grid.HasNeighbour(grid.ElementAt(i).Key, i, grid))
-                            {
-                                PhasePoint point = new PhasePoint(grid.ElementAt(i).Key);
-                                PhasePoint point1 = new PhasePoint(point);
-                                point1[i] -= ai * p;
-                                sum += ((v(point) - v(point1) / ai * p)) * f(T - t, point, u, v);
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-                    }
-                    
-                    row.Add(sum);
-                    sum = 0;
-                }
-                column.Add(row);
+              if (grid.GetNeighbour(x, -i, out neigh))
+              {
+                sum += speed[i] * (grid[x][t] - grid[neigh][t]) / grid.Steps[i];
+              }
+              else
+              {
+                // Что делать??? Как аппроксимировать на краю сетки???
+                sum += 0;
+              }
             }
+            else 
+            {
+              if (grid.GetNeighbour(x, i, out neigh))
+              {
+                sum += speed[i] * (grid[neigh][t] - grid[x][t]) / grid.Steps[i];
+              }
+              else
+              {
+                // Что делать??? Как аппроксимировать на краю сетки???
+                sum += 0;
+              }
+            }
+          }
 
-            double res = column
-                .Select(r => r.Min())
-                .Max();
+          sum += grid[x][t];
 
-            return res;
+          if (min > sum) min = sum;
         }
+
+        if (maxmin < min) maxmin = min;
+      }
+
+      return maxmin;
     }
+  }
 }
