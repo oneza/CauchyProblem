@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
-    <e p="$USER_HOME$/.Rider2018.2/system/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/.Rider2018.2/system/resharper-host/local/Transient/ReSharperHost/v182/SolutionCaches/_CouchyProblem.-260232773.00" t="ExcludeRecursive" />
-    <e p="$PROJECT_DIR$" t="IncludeFlat">
+    <e p="C:\Users\Oneza\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Oneza\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_CouchyProblem.-1878803196.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Oneza\RiderProjects\CauchyProblem" t="IncludeFlat">
       <e p="Contracts" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
         <e p="Contracts.cs" t="Include" />
         <e p="Contracts.csproj" t="IncludeRecursive" />
-        <e p="PhasePoint.cs" t="Include" />
-        <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.1" t="Include">
@@ -17,14 +15,16 @@
             </e>
           </e>
         </e>
+        <e p="PhasePoint.cs" t="Include" />
       </e>
       <e p="CouchyProblem" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
         <e p="ControlConstraints.cs" t="Include" />
         <e p="CouchyProblem.csproj" t="IncludeRecursive" />
         <e p="Grid.cs" t="Include" />
         <e p="LibLinking.cs" t="Include" />
         <e p="Main.cs" t="Include" />
-        <e p="bin" t="ExcludeRecursive" />
+        <e p="MinMax.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.1" t="Include">
@@ -34,9 +34,8 @@
         </e>
       </e>
       <e p="CouchyProblem.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
       <e p="SimpleMotion" t="IncludeRecursive">
-        <e p="SimpleMotion.cs" t="Include" />
-        <e p="SimpleMotion.csproj" t="IncludeRecursive" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -45,8 +44,9 @@
             </e>
           </e>
         </e>
+        <e p="SimpleMotion.cs" t="Include" />
+        <e p="SimpleMotion.csproj" t="IncludeRecursive" />
       </e>
-      <e p="packages" t="ExcludeRecursive" />
     </e>
   </component>
 </project>
