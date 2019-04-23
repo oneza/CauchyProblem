@@ -4,9 +4,9 @@ using Contracts;
 
 namespace CouchyProblem
 {
-  public class MinMax
+  public partial class Test
   {
-    public double Minmax(IDynamics dynam, double t, PhasePoint x, ControlConstraints u, 
+    public static double Minmax(IDynamics dynam, double t, PhasePoint x, ControlConstraints u, 
       ControlConstraints v, Grid grid)
     {
       double maxmin = -1e38;
