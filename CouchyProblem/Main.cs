@@ -57,11 +57,12 @@ namespace CouchyProblem
 
                 // Нужны два момента времени: текущий t и предыдущий t-delta,
                 // на который пересчитываем
-            {
-                foreach(PhasePoint x in grid.Keys)
                 {
-                    double velocity = Minmax(dynam, time[i], x, P, Q, grid);
-                    grid[x].Add(time[i] - delta, grid[x][time[i]] +- delta * velocity);
+                    foreach (PhasePoint x in grid.Keys)
+                    {
+                        double velocity = Minmax(dynam, time[i], x, P, Q, grid);
+                        grid[x].Add(time[i] - delta, grid[x][time[i]] + -delta * velocity);
+                    }
                 }
             }
 
