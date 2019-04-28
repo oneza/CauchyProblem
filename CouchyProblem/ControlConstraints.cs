@@ -8,11 +8,12 @@ namespace CouchyProblem
   public class ControlConstraints : SortedDictionary<PhasePoint, Dictionary<double, double>>
   {
     private readonly Grid constr;
-
-    public ICollection<PhasePoint> Keys
-    {
-      get { return constr.Keys; }
-    }
+//
+//    public ICollection<PhasePoint> Keys
+//    {
+//      get { return constr.Keys; }
+//    }
+    public PhasePoint Steps { get; protected set; }
 
     public PhasePoint FindMin(Func<PhasePoint, Double> f) // Передали функцию
     {
@@ -90,8 +91,7 @@ namespace CouchyProblem
           if (curind < center.Dim)
           {
             lowerBounds[curind] =
-              (int) Math.Ceiling(-Math.Sqrt(radius * radius -
-                                            cnt.Take(curind).Select(x => x * x).Sum()) / steps[curind]);
+              (int) Math.Ceiling(-Math.Sqrt(Math.Abs((radius * radius - cnt.Take(curind).Select(x => x * x).Sum())))/steps[curind]);
             upperBounds[curind] = -lowerBounds[curind];
             cnt[curind] = lowerBounds[curind] - 1;
           }

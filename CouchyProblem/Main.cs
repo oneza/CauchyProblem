@@ -22,11 +22,11 @@ namespace CouchyProblem
             LibLinking<IDynamics> loader = new LibLinking<IDynamics>();
             IDynamics dynam = loader.FindLib("./bin/Debug/netcoreapp2.1/SimpleMotion.dll");
 
-            ControlConstraints cc =
-                ControlConstraints.BallConstraints(new PhasePoint(2), 1,
-                    new PhasePoint(new List<double> {0.1, 0.1}));
-            Grid g = Grid.BallGrid(new PhasePoint(2), 1,
-                new PhasePoint(new List<double> {0.1, 0.1}));
+//            ControlConstraints cc =
+//                ControlConstraints.BallConstraints(new PhasePoint(2), 1,
+//                    new PhasePoint(new List<double> {0.1, 0.1}));
+//            Grid g = Grid.BallGrid(new PhasePoint(2), 1,
+//                new PhasePoint(new List<double> {0.1, 0.1}));
 
             PhasePoint
                 u = new PhasePoint(new List<double> {1, 0}),
@@ -36,7 +36,7 @@ namespace CouchyProblem
             
             PhasePoint
                 center = new PhasePoint(new List<double> {0, 0}),
-                steps = new PhasePoint(new List<double> {0.25, 0.25});
+                steps = new PhasePoint(new List<double> { 0.2 , 0.2});
             double radiusP = 1;
             double radiusQ = 0.5;
             ControlConstraints P = ControlConstraints.BallConstraints(center, radiusP, steps);
@@ -51,7 +51,7 @@ namespace CouchyProblem
             {
                 time[i] = t1 + i * delta;
             }
-
+            Console.WriteLine(time);
             for (int i = 0; i < time.Length; i++)
             {
 

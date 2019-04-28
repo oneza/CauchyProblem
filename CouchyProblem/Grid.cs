@@ -70,8 +70,7 @@ namespace CouchyProblem
           if (curind < center.Dim)
           {
             lowerBounds[curind] =
-              (int) Math.Ceiling(-Math.Sqrt(radius * radius -
-                                            cnt.Take(curind).Select(x => x * x).Sum()) / steps[curind]);
+              (int) Math.Ceiling(-Math.Sqrt(Math.Abs((radius * radius - cnt.Take(curind).Select(x => x * x).Sum())))/steps[curind]);
             upperBounds[curind] = -lowerBounds[curind];
             cnt[curind] = lowerBounds[curind] - 1;
           }
