@@ -22,7 +22,7 @@ namespace CouchyProblem
           {
             if (speed[i] > 0)
             {
-              if (grid.GetNeighbour(x, -i, out neigh))
+              if (grid.GetNeighbour(x, i, -1, out neigh))
               {
                 sum += speed[i] * (grid[x][t] - grid[neigh][t]) / grid.Steps[i];
               }
@@ -34,7 +34,7 @@ namespace CouchyProblem
             }
             else 
             {
-              if (grid.GetNeighbour(x, i, out neigh))
+              if (grid.GetNeighbour(x, i, +1, out neigh))
               {
                 sum += speed[i] * (grid[neigh][t] - grid[x][t]) / grid.Steps[i];
               }

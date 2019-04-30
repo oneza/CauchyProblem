@@ -17,6 +17,8 @@ namespace CouchyProblem
     public static Grid BoxGrid(PhasePoint ld, PhasePoint sizes, PhasePoint steps)
     {
       Grid grid = new Grid();
+      grid.Steps = steps;
+
       int[]
         upperBounds = new int[ld.Dim],
         cnt = new int[ld.Dim];
@@ -49,6 +51,8 @@ namespace CouchyProblem
     public static Grid BallGrid(PhasePoint center, double radius, PhasePoint steps)
     {
       Grid grid = new Grid();
+      grid.Steps = steps;
+
       int[]
         lowerBounds = new int[center.Dim],
         upperBounds = new int[center.Dim],
@@ -70,7 +74,11 @@ namespace CouchyProblem
           if (curind < center.Dim)
           {
             lowerBounds[curind] =
-              (int) Math.Ceiling(-Math.Sqrt(Math.Abs((radius * radius - cnt.Take(curind).Select(x => x * x).Sum())))/steps[curind]);
+              (int) Math.Ceiling(-Math.Sqrt(radius * radius - 
+                                            cnt
+                                              .Take(curind)
+                                              .Zip(steps, (i,s) => i*s)
+                                              .Select(x => x * x).Sum())/steps[curind]);
             upperBounds[curind] = -lowerBounds[curind];
             cnt[curind] = lowerBounds[curind] - 1;
           }
@@ -89,6 +97,8 @@ namespace CouchyProblem
     public static Grid SegmentGrid(PhasePoint beginning, PhasePoint end, PhasePoint steps)
     {
       Grid grid = new Grid();
+      grid.Steps = steps;
+
       PhasePoint currentpoint = beginning;
       while (currentpoint.CompareTo(end) != 0)
       {
@@ -101,11 +111,10 @@ namespace CouchyProblem
 
     // Может быть, еще что-то...
 
-    public bool GetNeighbour(PhasePoint p1, int dir, out PhasePoint neigh)
+    public bool GetNeighbour(PhasePoint p1, int coordIdx, int dir, out PhasePoint neigh)
     {
-      int absDir = Math.Abs(dir);
       neigh = new PhasePoint(p1);
-      neigh.coords[absDir] += Steps[absDir] * Math.Sign(dir);
+      neigh.coords[coordIdx] += Steps[coordIdx] * dir;
       return ContainsKey(neigh);
     }
   }
