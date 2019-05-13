@@ -8,7 +8,7 @@ namespace Contracts
     double fi(int i, double t, PhasePoint x, PhasePoint u, PhasePoint v);
   }
 
-  public interface Sigma
+  public interface ISigma
   {
     double sigma(PhasePoint x);
   }

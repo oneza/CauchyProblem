@@ -7,7 +7,7 @@ using Contracts;
 
 namespace CouchyProblem
 {
-  public class Grid : SortedDictionary<PhasePoint, Dictionary<double, double>>
+  public class Grid : SortedDictionary<PhasePoint, SortedDictionary<double, double>>
   {
     public PhasePoint Steps { get; protected set; }
 

@@ -22,8 +22,8 @@ namespace CouchyProblem
       LibLinking<IDynamics> loader = new LibLinking<IDynamics>();
       IDynamics dynam = loader.FindLib("../SimpleMotion/bin/Debug/netcoreapp2.1/SimpleMotion.dll");
       
-      LibLinking<Sigma> anotherloader = new LibLinking<Sigma>();
-      Sigma sigma = anotherloader.FindLib("../Sigma/bin/Debug/netcoreapp2.1/Sigma.dll");
+      LibLinking<ISigma> anotherloader = new LibLinking<ISigma>();
+      ISigma sigma = anotherloader.FindLib("../Sigma/bin/Debug/netcoreapp2.1/Sigma.dll");
       
 
 //            ControlConstraints cc =
@@ -46,7 +46,6 @@ namespace CouchyProblem
       
       ControlConstraints P = ControlConstraints.BallConstraints(center, radiusP, steps);
       ControlConstraints Q = ControlConstraints.BallConstraints(center, radiusQ, steps);
-      Grid grid = Grid.BallGrid(center, 3, steps);
       List<PhasePoint> res = new List<PhasePoint>();
       
       double t1 = 0;
@@ -57,14 +56,10 @@ namespace CouchyProblem
       {
         time[i] = t1 + i * delta;
       }
-
-      // Значения на стеке в момент Т (через функцию сигма)
-      // ???
-
+      
+      Grid grid = Grid.BallGrid(center, 3, steps);
       foreach (PhasePoint x in grid.Keys)
-      {
-        grid[x] = new Dictionary<double, double>(T, sigma.sigma(x));
-      }
+        grid[x] = new SortedDictionary<double, double> {{T, sigma.sigma(x)}};
       
       for (int i = time.Length - 1; i >= 0; i--)
       {
@@ -74,7 +69,7 @@ namespace CouchyProblem
           foreach (PhasePoint x in grid.Keys)
           {
             double velocity = Minmax(dynam, time[i], x, P, Q, grid);
-            grid[x].Add(time[i] - delta, grid[x][time[i]] + -delta * velocity);
+            grid[x].Add(time[i] - delta, grid[x][time[i]] - delta * velocity);
           }
         }
       }

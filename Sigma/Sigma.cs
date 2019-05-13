@@ -4,7 +4,7 @@ using Contracts;
 
 namespace Sigma
 {
-    public class Sigma : Contracts.Sigma
+    public class Distance : ISigma
     {
         public double sigma(PhasePoint x)
         {
