@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMotion", "SimpleMotio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sigma", "Sigma\Sigma.csproj", "{02609AF1-9219-492F-B908-D1F8EDBB1020}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Functions", "Functions\Functions.csproj", "{59A921FC-A300-4088-B4EB-B490229C1EFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{02609AF1-9219-492F-B908-D1F8EDBB1020}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02609AF1-9219-492F-B908-D1F8EDBB1020}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02609AF1-9219-492F-B908-D1F8EDBB1020}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59A921FC-A300-4088-B4EB-B490229C1EFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59A921FC-A300-4088-B4EB-B490229C1EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59A921FC-A300-4088-B4EB-B490229C1EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59A921FC-A300-4088-B4EB-B490229C1EFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

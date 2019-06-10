@@ -25,6 +25,9 @@ namespace CouchyProblem
       LibLinking<ISigma> anotherloader = new LibLinking<ISigma>();
       ISigma sigma = anotherloader.FindLib("../Sigma/bin/Debug/netcoreapp2.1/Sigma.dll");
       
+      LibLinking<IChi> chiloader = new LibLinking<IChi>();
+      IChi chi = chiloader.FindLib("../Functions/bin/Debug/netcoreapp2.1/Functions.dll");
+      
 
 //            ControlConstraints cc =
 //                ControlConstraints.BallConstraints(new PhasePoint(2), 1,
@@ -44,6 +47,7 @@ namespace CouchyProblem
       double radiusP = 1;
       double radiusQ = 0.5;
       
+      Grid grid = Grid.BallGrid(center, 3, steps);
       ControlConstraints P = ControlConstraints.BallConstraints(center, radiusP, steps);
       ControlConstraints Q = ControlConstraints.BallConstraints(center, radiusQ, steps);
       List<PhasePoint> res = new List<PhasePoint>();
@@ -57,9 +61,9 @@ namespace CouchyProblem
         time[i] = t1 + i * delta;
       }
       
-      Grid grid = Grid.BallGrid(center, 3, steps);
-      foreach (PhasePoint x in grid.Keys)
-        grid[x] = new SortedDictionary<double, double> {{T, sigma.sigma(x)}};
+      //Grid grid = Grid.BallGrid(center, 3, steps);
+      foreach (PhasePoint x in grid.Keys.ToList())
+        grid[x] = new SortedDictionary<double, double> {{T, }};
       
       for (int i = time.Length - 1; i >= 0; i--)
       {

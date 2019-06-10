@@ -12,4 +12,14 @@ namespace Contracts
   {
     double sigma(PhasePoint x);
   }
+
+  public interface IChi
+  {
+    double chi(PhasePoint x, double r, double t, double T);
+  }
+
+  public interface ITheta
+  {
+    double theta(PhasePoint x);
+  }
 }

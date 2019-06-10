@@ -34,7 +34,31 @@
         </e>
       </e>
       <e p="CouchyProblem.sln" t="IncludeFlat" />
+      <e p="Functions" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Functions.cs" t="Include" />
+        <e p="Functions.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="Functions.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
       <e p="packages" t="ExcludeRecursive" />
+      <e p="Sigma" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="Sigma.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Sigma.cs" t="Include" />
+        <e p="Sigma.csproj" t="IncludeRecursive" />
+      </e>
       <e p="SimpleMotion" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
