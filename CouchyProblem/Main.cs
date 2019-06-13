@@ -63,7 +63,7 @@ namespace CouchyProblem
       
       //Grid grid = Grid.BallGrid(center, 3, steps);
       foreach (PhasePoint x in grid.Keys.ToList())
-        grid[x] = new SortedDictionary<double, double> {{T, }};
+        grid[x] = new SortedDictionary<double, double> {{T, chi.chi(x, 3, T)}};
       
       for (int i = time.Length - 1; i >= 0; i--)
       {
@@ -73,7 +73,7 @@ namespace CouchyProblem
           foreach (PhasePoint x in grid.Keys)
           {
             double velocity = Minmax(dynam, time[i], x, P, Q, grid);
-            grid[x].Add(time[i] - delta, grid[x][time[i]] - delta * velocity);
+            grid[x].Add(time[i] - delta, Math.Min(chi.chi(x, 3, T), chi.chi(x, 3, T) + delta * velocity));
           }
         }
       }

@@ -11,7 +11,7 @@ namespace Functions
             return 0;
         }
 
-        public double chi(PhasePoint x, double r, double t, double T)
+        public double chi(PhasePoint x, double r, double t)
         {
             double norm = Math.Sqrt(x
                 .Select(a => a * a)
