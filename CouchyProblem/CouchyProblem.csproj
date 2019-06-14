@@ -20,6 +20,9 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Contracts\Contracts.csproj" />
+      <ProjectReference Include="..\CylinderSet_NoConstraints\CylinderSet_NoConstraints.csproj" />
+      <ProjectReference Include="..\Sigma\Sigma.csproj" />
+      <ProjectReference Include="..\SimpleMotion\SimpleMotion.csproj" />
     </ItemGroup>
 
 </Project>
