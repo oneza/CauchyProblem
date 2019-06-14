@@ -22,8 +22,8 @@ namespace CouchyProblem
       LibLinking<IDynamics> loader = new LibLinking<IDynamics>();
       IDynamics dynam = loader.FindLib("../SimpleMotion/bin/Debug/netcoreapp2.1/SimpleMotion.dll");
       
-      LibLinking<ISigma> anotherloader = new LibLinking<ISigma>();
-      ISigma sigma = anotherloader.FindLib("../Sigma/bin/Debug/netcoreapp2.1/Sigma.dll");
+      LibLinking<ISigma> sigmaloader = new LibLinking<ISigma>();
+      ISigma sigma = sigmaloader.FindLib("../Sigma/bin/Debug/netcoreapp2.1/Sigma.dll");
       
       LibLinking<IChi> chiloader = new LibLinking<IChi>();
       IChi chi = chiloader.FindLib("../Functions/bin/Debug/netcoreapp2.1/Functions.dll");

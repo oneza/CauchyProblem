@@ -18,6 +18,11 @@ namespace Contracts
     double chi(PhasePoint x, double r, double t);
   }
 
+  public interface IChi1
+  {
+    double chi(PhasePoint x, double r, double T, double t);
+  }
+
   public interface ITheta
   {
     double theta(PhasePoint x);
