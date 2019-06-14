@@ -19,15 +19,16 @@ namespace CouchyProblem
       //    ld = new PhasePoint(new List<double> { 1, 1, 1 });
       //Grid grid = Grid.BoxGrid(ld, sizes, steps);
 
+      string DLLPath = "./bin/Debug/netcoreapp2.1/";
       LibLinking<IDynamics> loader = new LibLinking<IDynamics>();
-      IDynamics dynam = loader.FindLib("../SimpleMotion/bin/Debug/netcoreapp2.1/SimpleMotion.dll");
+      IDynamics dynam = loader.FindLib(DLLPath + "SimpleMotion.dll");
       
-      LibLinking<ISigma> sigmaloader = new LibLinking<ISigma>();
-      ISigma sigma = sigmaloader.FindLib("../Sigma/bin/Debug/netcoreapp2.1/Sigma.dll");
+//      LibLinking<ISigma> sigmaloader = new LibLinking<ISigma>();
+//      ISigma sigma = sigmaloader.FindLib(DLLPath + "Sigma.dll");
       
+      double finalR = 1.0;
       LibLinking<IChi> chiloader = new LibLinking<IChi>();
-      IChi chi = chiloader.FindLib("../Functions/bin/Debug/netcoreapp2.1/Functions.dll");
-      
+      IChi chi = chiloader.FindLib(DLLPath + "CylinderSet_NoConstraints.dll", finalR);
 
 //            ControlConstraints cc =
 //                ControlConstraints.BallConstraints(new PhasePoint(2), 1,
@@ -43,38 +44,38 @@ namespace CouchyProblem
 
       PhasePoint
         center = new PhasePoint(new List<double> {0, 0}),
-        steps = new PhasePoint(new List<double> {0.2, 0.2});
+        xSteps = new PhasePoint(new List<double> {0.2, 0.2}),
+        pSteps = xSteps,
+        qSteps = new PhasePoint(new List<double> {0.1, 0.1});
       double radiusP = 1;
       double radiusQ = 0.5;
       
-      Grid grid = Grid.BallGrid(center, 3, steps);
-      ControlConstraints P = ControlConstraints.BallConstraints(center, radiusP, steps);
-      ControlConstraints Q = ControlConstraints.BallConstraints(center, radiusQ, steps);
+      Grid grid = Grid.BallGrid(center, 3.0, xSteps);
+      ControlConstraints P = ControlConstraints.BallConstraints(center, radiusP, pSteps);
+      ControlConstraints Q = ControlConstraints.BallConstraints(center, radiusQ, qSteps);
       List<PhasePoint> res = new List<PhasePoint>();
       
       double t1 = 0;
       double T = 5;
-      double delta = 0.25;
-      double[] time = new double[21];
-      for (int i = 0; i < time.Length; i++)
+      double delta = 0.1;
+      int nT = (int)Math.Ceiling((T - t1) / delta);
+      double[] time = new double[nT+1];
+      for (int i = 0; i <= nT; i++)
       {
-        time[i] = t1 + i * delta;
+        time[nT - i] = T - i * delta;
       }
       
       //Grid grid = Grid.BallGrid(center, 3, steps);
       foreach (PhasePoint x in grid.Keys.ToList())
-        grid[x] = new SortedDictionary<double, double> {{T, chi.chi(x, 3, T)}};
+        grid[x] = new SortedDictionary<double, double> {{T, chi.chi(T, x)}};
       
-      for (int i = time.Length - 1; i >= 0; i--)
+      for (int i = time.Length - 1; i > 0; i--)
       {
-        // Нужны два момента времени: текущий t и предыдущий t-delta,
-        // на который пересчитываем
+        foreach (PhasePoint x in grid.Keys)
         {
-          foreach (PhasePoint x in grid.Keys)
-          {
-            double velocity = Minmax(dynam, time[i], x, P, Q, grid);
-            grid[x].Add(time[i] - delta, Math.Min(chi.chi(x, 3, T), chi.chi(x, 3, T) + delta * velocity));
-          }
+          double velocity = Minmax(dynam, time[i], x, P, Q, grid);
+          grid[x].Add(time[i-1], Math.Min(chi.chi(time[i-1], x), 
+            grid[x][time[i]] + (time[i] - time[i-1]) * velocity));
         }
       }
 

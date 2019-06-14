@@ -45,9 +45,6 @@ namespace CouchyProblem
               }
             }
           }
-
-          sum += grid[x][t];
-
           if (min > sum) min = sum;
         }
 

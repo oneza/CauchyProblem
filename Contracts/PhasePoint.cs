@@ -9,7 +9,7 @@ namespace Contracts
 {
     public static class Tools
     {
-        public static double Eps = 1e-1;
+        public static double Eps = 1e-7;
 
         public static bool EQ(double a, double b)
         {
@@ -64,7 +64,7 @@ namespace Contracts
 
         public PhasePoint(PhasePoint prevPoint)
         {
-            coords = prevPoint.coords;
+            coords = new List<double>(prevPoint.coords);
         }
 
         public PhasePoint(PhasePoint basePoint, PhasePoint step, int[] indices)

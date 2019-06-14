@@ -84,7 +84,8 @@ namespace CouchyProblem
       while (curind >= 0)
       {
         cnt[curind]++;
-        if (cnt[curind] > upperBounds[curind]) curind--;
+        if (cnt[curind] > upperBounds[curind]) 
+          curind--;
         else
         {
           curind++;
