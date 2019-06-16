@@ -62,6 +62,21 @@ namespace CouchyProblem
           inArgs.Add(line);
         }
       }
+      
+      List<string[]> newArgs = new List<string[]>();
+      foreach (string line in inArgs)
+      {
+        String[] words = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        newArgs.Add(words);
+      }
+
+      foreach (string[] line in newArgs)
+      {
+        foreach (string word in line)
+        {
+          
+        }
+      }
 
       PhasePoint
         center = new PhasePoint(new List<double> {0, 0}),
@@ -74,9 +89,7 @@ namespace CouchyProblem
       Grid grid = Grid.BallGrid(center, 3.0, xSteps);
       ControlConstraints P = ControlConstraints.BallConstraints(center, radiusP, pSteps);
       ControlConstraints Q = ControlConstraints.BallConstraints(center, radiusQ, qSteps);
-      List<PhasePoint> res = new List<PhasePoint>();
       
-      //Grid grid = Grid.BallGrid(center, 3, steps);
       foreach (PhasePoint x in grid.Keys.ToList())
         grid[x] = new SortedDictionary<double, double> {{T, chi1.chi(T, x)}};
       
