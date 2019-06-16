@@ -34,14 +34,26 @@
         </e>
       </e>
       <e p="CouchyProblem.sln" t="IncludeFlat" />
-      <e p="Functions" t="IncludeRecursive">
+      <e p="CylinderSet" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
-        <e p="Functions.cs" t="Include" />
-        <e p="Functions.csproj" t="IncludeRecursive" />
+        <e p="CylinderSet.cs" t="Include" />
+        <e p="CylinderSet.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.1" t="Include">
-              <e p="Functions.AssemblyInfo.cs" t="Include" />
+              <e p="CylinderSet.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="CylinderSet_NoConstraints" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="CylinderSet_NoConstraints.cs" t="Include" />
+        <e p="CylinderSet_NoConstraints.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="CylinderSet_NoConstraints.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
