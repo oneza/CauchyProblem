@@ -130,7 +130,7 @@ namespace CouchyProblem
 
       int length = time.Length;
       
-      Parallel.For(0, length  , i =>
+ /*     Parallel.For(0, length  , i =>
       {
         foreach (PhasePoint x in grid.Keys)
         {
@@ -139,10 +139,10 @@ namespace CouchyProblem
               grid[x][time[length - i]] + (time[length - i] - time[length - i - 1]) * velocity),
             theta.theta(time[length - i - 1], x)));
         }
-      });
+      });*/
 
 
-/*      for (int i = time.Length - 1; i > 0; i--)
+      for (int i = time.Length - 1; i > 0; i--)
       {
         foreach(PhasePoint x in grid.Keys)
         {
@@ -151,7 +151,7 @@ namespace CouchyProblem
             grid[x][time[i]] + (time[i] - time[i-1]) * velocity), 
             theta.theta(time[i-1], x)));
         }
-      }*/
+      }
 
       using (StreamWriter outputFile = new StreamWriter(Path.Combine(outPath, "Result6.txt")))
       {
